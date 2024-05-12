@@ -210,7 +210,7 @@ const Courses = () => {
                                             {selectedGoals.map((option, index) => (
                                                 <div key={index} className="selected-option">
                                                     <p className='makewdth'>{option}</p>
-                                                    <button onClick={() => handleRemoveOption(option, setSelectedGoals)}>x</button>
+                                                    <button type="button" onClick={() => handleRemoveOption(option, setSelectedGoals)}>x</button>
                                                 </div>
                                             ))}
                                         </div>
@@ -228,7 +228,7 @@ const Courses = () => {
                                             {selectedCourses.map((option, index) => (
                                                 <div key={index} className="selected-option">
                                                     <p>{option}</p>
-                                                    <button onClick={() => handleRemoveOption(option, setSelectedCourses)}>x</button>
+                                                    <button type="button" onClick={() => handleRemoveOption(option, setSelectedCourses)}>x</button>
                                                 </div>
                                             ))}
                                         </div>
@@ -254,7 +254,7 @@ const Courses = () => {
                                             {selectedTopics.map((option, index) => (
                                                 <div key={index} className="selected-option">
                                                     <p>{option}</p>
-                                                    <button onClick={() => handleRemoveOption(option, setSelectedTopics)}>x</button>
+                                                    <button type="button" onClick={() => handleRemoveOption(option, setSelectedTopics)}>x</button>
                                                 </div>
                                             ))}
                                         </div>
