@@ -1,0 +1,159 @@
+.first {
+  background-color: rgb(247, 234, 234);
+  width: auto;
+  height:auto;
+}
+
+/* Courses.css */
+/* Courses.css */
+.crs-cn {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  bottom: 100px;
+  /* Set the height of the container to 100% of the viewport height */
+}
+
+.upbtn {
+  background: none;
+  border: none;
+  width: auto;
+  margin-right: 100px;
+}
+
+.header {
+  background-color: rgb(79, 180, 148);
+  width: 1400px;
+  height: 14px;
+}
+
+.header-title {
+  color: white;
+}
+
+.content {
+  display: flex;
+  flex: 1;
+  /* Make the content area take up remaining space */
+}
+
+.sidebar {
+
+  border-right: 1px solid #ccc;
+  height: 100%;
+  /* Set the height of the sidebar to 100% */
+}
+
+
+
+.main-content {
+  flex: 1;
+  /* Make the main content area take up remaining space */
+  padding: 20px;
+}
+
+.optn {
+  height: 30px;
+  width: 260px;
+  background-color: rgb(128, 201, 180);
+  border-radius: 4px;
+}
+
+.firsthalf {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.leftfirst,
+.rightfirst,
+.thirdpart {
+  display: flex;
+  // flex-direction: column;
+  gap: 40px;
+}
+
+option {
+  color: black;
+
+}
+
+.makewdth {
+  height: auto;
+  width: 200px auto;
+  background-color: rgb(217, 237, 237);
+  border-radius: 6px;
+  border: 0px solid green;
+}
+
+p {
+  color: black;
+}
+
+/* YourComponent.css */
+
+// .selected-option {
+//     display: flex;
+//   justify-content: space-between; /* Align items to each end */
+//   align-items: center;
+//   margin-bottom: 5px;
+
+//   }
+
+//   .selected-option p {
+//     margin-right: 10px;
+//   }
+
+//   .selected-option button {
+//     // background-color: #ff0000;
+//     background: none;
+//     color:black;
+//     border: none;
+//     padding: 5px;
+//     cursor: pointer;
+//   }
+
+/* YourComponent.css */
+
+.selected-option {
+  position: relative;
+  /* Make the container relative */
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.selected-option p {
+  margin-right: 10px;
+}
+
+.selected-option button {
+  position: absolute;
+  /* Position the button absolutely */
+  top: 0;
+  right: 0;
+  background: none;
+  color: black;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.selected-option button:hover {
+  background-color: #ac5050;
+}
+
+.mybtn {
+
+  width: 10px;
+
+  background: none;
+  color: red;
+  border: none;
+
+}
+
+.optnval {
+  margin-right: 200%;
+  margin-top: 10px;
+}
