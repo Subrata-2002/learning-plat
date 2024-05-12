@@ -164,7 +164,7 @@ const Courses = () => {
     const navigate = useNavigate();
     const handleSubmit = async () => {
        
-        // e.preventDefault();
+        e.preventDefault();
         // console.log('Question Text:', questionText); // Lo
         // console.log("eqtn is " + questionEquations);
         // console.log("selected topic is" + selectedTopics);
@@ -334,7 +334,7 @@ const Courses = () => {
                                                         value={value}
                                                         onChange={(e) => handleInputChange(index, e.target.value)}
                                                     />
-                                                    <button onClick={() => deleteOption(index)} className='mybtn' >
+                                                    <button type='button' onClick={() => deleteOption(index)} className='mybtn' >
                                                         x
                                                     </button>
                                                 </div>
