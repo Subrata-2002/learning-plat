@@ -162,7 +162,7 @@ const Courses = () => {
     };
 
     const navigate = useNavigate();
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
        
         e.preventDefault();
         // console.log('Question Text:', questionText); // Lo
