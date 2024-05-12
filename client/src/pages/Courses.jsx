@@ -6,6 +6,7 @@ import { InlineMath } from 'react-katex';
 import { Link } from 'react-router-dom';
 import newRequest from '../utils/newRequest.js';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
 const Courses = () => {
@@ -160,9 +161,9 @@ const Courses = () => {
         setTextboxContent(newTextboxContent);
     };
 
-
-
+    const navigate = useNavigate();
     const handleSubmit = async () => {
+       
         // e.preventDefault();
         // console.log('Question Text:', questionText); // Lo
         // console.log("eqtn is " + questionEquations);
@@ -170,7 +171,10 @@ const Courses = () => {
         // console.log("topic is " + topic)
         try {
             await newRequest.post('/questions', { qstnname: questionEquations.join(' '), topic: selectedTopics.join(' ') });
-            console.log('Question saved successfully!');
+            // console.log('Question saved successfully!');
+        
+                navigate("/");
+             
         } catch (error) {
             console.error('Error saving question:', error);
         }
