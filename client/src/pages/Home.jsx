@@ -3,7 +3,7 @@ import "./Home.scss";
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import { InlineMath } from 'react-katex';
-
+import newRequest from '../utils/newRequest';
 const Home = () => {
 
 
@@ -13,7 +13,7 @@ const Home = () => {
     useEffect(() => {
         const fetchQuestions = async () => {
             try {
-                const response = await axios.get('http://localhost:3000/api/getqstn'); // Replace with your API endpoint
+                const response = await newRequest.get('/getqstn'); // Replace with your API endpoint
                 setQuestions(response.data);
                 console.log("mydata is ", response.data)
 
@@ -28,7 +28,7 @@ const Home = () => {
     const handleSearch = async (e) => {
         setSearchQuery(e.target.value);
         try {
-            const response = await axios.get(`http://localhost:3000/api/search?q=${e.target.value}`);
+            const response = await newRequest.get(`/search?q=${e.target.value}`);
             console.log(response.data);
             setQuestions(response.data);
         } catch (error) {

@@ -65,7 +65,7 @@ const Courses = () => {
         setFunction(prevOptions => [...prevOptions, ...optionValues]);
 
         try {
-            const response = await axios.get(`http://localhost:3000/api/coursesByGoal?goalNames=${optionValues.join('&goalNames=')}`);
+            const response = await newRequest.get(`/coursesByGoal?goalNames=${optionValues.join('&goalNames=')}`);
 
             const coursesToAdd = response.data.courseNames.map(courseName => ({ goal: optionValues[0], name: courseName })); // Add goal info to courses
             // console.log(prevCourses => [...prevCourses, ...response.data.courseNames]);
@@ -82,7 +82,7 @@ const Courses = () => {
 
         try {
            
-            const response = await axios.get(`http://localhost:3000/api/topicByCourse?courseNames=${optionValues.join('&courseNames=')}`);
+            const response = await newRequest.get(`/topicByCourse?courseNames=${optionValues.join('&courseNames=')}`);
             console.log("response is " + response.data.topics);
 
             const topicsToAdd = response.data.topicNames.map(topicName => ({ course: optionValues[0], name: topicName }));
@@ -169,7 +169,7 @@ const Courses = () => {
         // console.log("selected topic is" + selectedTopics);
         // console.log("topic is " + topic)
         try {
-            await axios.post('http://localhost:3000/api/questions', { qstnname: questionEquations.join(' '), topic: selectedTopics.join(' ') });
+            await newRequest.post('/questions', { qstnname: questionEquations.join(' '), topic: selectedTopics.join(' ') });
             console.log('Question saved successfully!');
         } catch (error) {
             console.error('Error saving question:', error);
