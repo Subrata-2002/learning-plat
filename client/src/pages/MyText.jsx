@@ -7,42 +7,45 @@ import 'react-quill/dist/quill.snow.css'; // Import Quill styles
 const MyText = ({ sendEquationsToParent }) => {
     const [equations, setEquations] = useState([]);
 
-    const handleChange = (newText) => {
-        // Extract equations from the text
-        const newEquations = newText.split(/\n|<p>|<\/p>/).filter((equation) => equation.trim().length > 0);
-        setEquations(newEquations);
-        // Call the function to send equations to parent component
-        sendEquationsToParent(newEquations);
+    const handleContentChange = (newContent) => {
+        setEquations(newContent);
+        if (sendEquationsToParent) {
+            sendEquationsToParent(newContent); // Pass the content to the parent component
+        }
     };
+
+    const modules = {
+        toolbar: [
+            // [{ 'size': [] }],
+            ['bold', 'italic', 'underline'], // Include bold and italic buttons
+            [{ 'font': [] }],
+            [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+            [{ 'indent': '-1' }, { 'indent': '+1' }],
+            ['link', 'image'],
+            ['clean'],
+            ['undo', 'redo'],
+        ]
+    };
+
+    const formats = [
+        'header', 'font', 'size',
+        'bold', 'italic',
+        'list', 'bullet', 'indent',
+        'link', 'image'
+    ];
+
+    
     return (
         <div>
 
             <div className="text-editor" >
                 <ReactQuill
-                    theme="snow" // Specify theme ('snow' is a built-in theme)
-                    
-                    onChange={handleChange}
-                    modules={{
-                        toolbar: [
-                            [{ 'header': [1, 2, 3, false] }],
-                            ['bold', 'italic', 'underline', 'strike'],
-                            ['link', 'image'],
-                            [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-                            ['clean']
-                        ]
-                    }}
-                    placeholder="Write question..."
-                    preserveWhitespace={true}
+                    value={equations}
+                    onChange={handleContentChange}
+                    modules={modules} // Include the modules
+                    formats={formats} // Include the formats
                 />
-
             </div>
-            {/* <div style={{ color: "black" }}>
-            {equations.map((equation, index) => (
-                    <div key={index}>
-                        <InlineMath>{equation}</InlineMath>
-                    </div>
-                ))}
-            </div> */}
         </div>
 
     );

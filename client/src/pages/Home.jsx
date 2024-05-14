@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import axios from 'axios';
 import { InlineMath } from 'react-katex';
 import newRequest from '../utils/newRequest';
+import Latex from 'react-latex-next';
+
 const Home = () => {
 
 
@@ -60,7 +62,7 @@ const Home = () => {
 
                         {questions.map((question) => (
                             <tr key={question._id}>
-                                <td><InlineMath>{question.qstnname}</InlineMath></td>
+                                <td><Latex>{question.qstnname}</Latex></td>
                                 <td>{question.author}</td>
                                 <td>{question.topic.join(', ')}</td>
                             </tr>

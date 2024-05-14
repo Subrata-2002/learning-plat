@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import newRequest from '../utils/newRequest.js';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import Latex from 'react-latex-next';
 
 const Courses = () => {
 
@@ -28,14 +28,14 @@ const Courses = () => {
     const [solutions, setSolutions] = useState([]);
 
     const [questionText, setQuestionText] = useState('');
-    const [questionEquations, setQuestionEquations] = useState([]);
+    const [questionEquations, setQuestionEquations] = useState('');
 
 
     useEffect(() => {
-       
+
         const fetchGoals = async () => {
             try {
-                const response = await newRequest.get('/unique-goals'); 
+                const response = await newRequest.get('/unique-goals');
                 setGoals(response.data);
                 console.log(response);
             } catch (error) {
@@ -82,7 +82,7 @@ const Courses = () => {
         setFunction(prevOptions => [...prevOptions, ...optionValues]);
 
         try {
-           
+
             const response = await newRequest.get(`/topicByCourse?courseNames=${optionValues.join('&courseNames=')}`);
             console.log("response is " + response.data.topics);
 
@@ -99,15 +99,15 @@ const Courses = () => {
         console.log('Courses:', course);
 
         if (selectedGoals.includes(optionValue) || selectedCourses.includes(optionValue)) {
-           
+
             setFunction(prevOptions => prevOptions.filter(option => option !== optionValue));
 
-           
+
             setCourse(prevCourses => prevCourses.filter(course => course.goal !== optionValue));
             setTopic(prevTopics => prevTopics.filter(topic => topic.course !== optionValue));
 
         } else {
-            
+
             setFunction(prevOptions => prevOptions.filter(option => option !== optionValue));
         }
 
@@ -163,18 +163,18 @@ const Courses = () => {
 
     const navigate = useNavigate();
     const handleSubmit = async (e) => {
-       
+
         e.preventDefault();
         // console.log('Question Text:', questionText); // Lo
         // console.log("eqtn is " + questionEquations);
         // console.log("selected topic is" + selectedTopics);
         // console.log("topic is " + topic)
         try {
-            await newRequest.post('/questions', { qstnname: questionEquations.join(' '), topic: selectedTopics.join(' ') });
-            // console.log('Question saved successfully!');
-        
-                navigate("/");
-             
+            await newRequest.post('/questions', { qstnname: questionEquations, topic: selectedTopics.join(' ') });
+            console.log('Question saved successfully!');
+
+            navigate("/");
+
         } catch (error) {
             console.error('Error saving question:', error);
         }
@@ -246,7 +246,7 @@ const Courses = () => {
 
                                             <p>Topic</p>
                                             <select name="optn" id="" className='optn' onChange={(e) => handleTopicChange(e, setSelectedTopics)}>
-                                            <option>select</option>
+                                                <option>select</option>
 
                                                 {topic.map((mtopic, index) => (
 
@@ -265,21 +265,21 @@ const Courses = () => {
 
                                         <div>
                                             <p>Wheatage</p>
-                                            <div style={{marginTop:"34px"}}>
+                                            <div style={{ marginTop: "34px" }}>
 
-                                            {selectedTopics.map((topic, index) => (
-                                                <div key={index} className="selected-option" >
-                                                    <p>{topic}</p>
-                                                    <input
-                                                        placeholder='Enter wheatage'
-                                                        type="text"
-                                                        style={{ backgroundColor: "white", color: "black", width: "100px", borderRadius: "4px" }}
-                                                        value={topicWeightages[topic] || ''}
-                                                        onChange={(e) => handleWeightageChange(e, topic)}
-                                                    />
+                                                {selectedTopics.map((topic, index) => (
+                                                    <div key={index} className="selected-option" >
+                                                        <p>{topic}</p>
+                                                        <input
+                                                            placeholder='Enter wheatage'
+                                                            type="text"
+                                                            style={{ backgroundColor: "white", color: "black", width: "100px", borderRadius: "4px" }}
+                                                            value={topicWeightages[topic] || ''}
+                                                            onChange={(e) => handleWeightageChange(e, topic)}
+                                                        />
 
-                                                </div>
-                                            ))}
+                                                    </div>
+                                                ))}
                                             </div>
                                         </div>
 
@@ -361,11 +361,13 @@ const Courses = () => {
                         </div>
                         <div className="main-content" style={{ color: "black" }}>
                             {/* Add your main content here */} <h2>Questions</h2>
-                            {questionEquations.map((equation, index) => (
+                            {/* {questionEquations.map((equation, index) => (
                                 <div key={index}>
                                     <InlineMath>{equation}</InlineMath>
                                 </div>
-                            ))}
+                            ))} */}
+                            <Latex> {questionEquations}</Latex>
+
 
                             <div>
 
@@ -373,25 +375,37 @@ const Courses = () => {
 
                                     {textboxContent.map((content, index) => (
                                         <li key={index} style={{ color: "red" }}>
-                                            <input type="checkbox" name="" id="" />{content}</li>
+                                            <input type="checkbox" name="" id="" />
+                                            <Latex>{content}</Latex>
+                                        </li>
                                     ))}
 
                                 </ol>
 
                             </div>
 
+                            {
+                                hintEquations.length > 0 && (
+                                    <>
+                                        <h2>Hint</h2>
 
-                            {hintEquations.map((eqtn, index) => (
-                                <><h2>Hint</h2><div key={index}>
-                                    <InlineMath>{eqtn}</InlineMath>
-                                </div></>
-                            ))}
+                                        <div >
+                                            <Latex>{hintEquations}</Latex>
+                                        </div>
 
-                            {solutions.map((soln, index) => (
-                                <><h2>Solutions</h2><div key={index}>
-                                    <InlineMath>{soln}</InlineMath>
+                                    </>
+                                )
+                            }
+
+
+
+
+                            {solutions.length > 0 && (
+                                <><h2>Solutions</h2>
+                                <div >
+                                    <Latex>{solutions}</Latex>
                                 </div></>
-                            ))}
+                            )}
                         </div>
 
 
