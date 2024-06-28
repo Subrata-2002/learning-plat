@@ -1,1 +1,3 @@
 # learning-plat
+
+An e-learning platform where admins can register questions by selecting goals, associating them with courses, and further selecting topics related to those courses from a database. Administrators can register numerical, trigonometric, and calculus-based questions, providing options for students to answer. The platform includes features for students to access hints and solutions for each question. Additionally, it offers a search functionality for students to find specific questions based on their needs.
